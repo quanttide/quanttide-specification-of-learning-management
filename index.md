@@ -1,16 +1,17 @@
-# 核心领域模型
+# 量潮学习管理标准
 
-qtcloud-learn 的核心模型：**User** × **Criterion** → **Completion**
+核心模型：**Learner** × **Criterion** → **Completion**
 
 ## 实体
 
-### User（用户）
+### Learner（学习者）
 
-学员，ID 来自 auth 领域，本领域只引用。
+本领域的学习者主体。
 
 ```
-User {
-  id: uuid    # 引用 auth 领域的用户 ID
+Learner {
+  id: uuid      # 本领域的学习者 ID
+  user_id: uuid # 预留，关联 auth 领域的用户 ID
 }
 ```
 
@@ -33,7 +34,7 @@ User 与 Criterion 的交叉记录，记录通过状态。
 ```
 Completion {
   id: uuid              # 主键
-  user_id: uuid         # → User.id
+  learner_id: uuid      # → Learner.id
   criterion_id: uuid    # → Criterion.id
   status: enum          # completed | not_completed
   created_at: datetime  # 创建时间
@@ -44,5 +45,5 @@ Completion {
 ## 关系
 
 ```
-User ──1:N──▶ Completion ◀──N:1── Criterion
+Learner ──1:N──▶ Completion ◀──N:1── Criterion
 ```
