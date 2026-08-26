@@ -1,6 +1,8 @@
 # 量潮学习管理标准
 
-核心模型：**Learner** × **Criterion** → **Completion**
+核心模型：**Learner** × **Criterion（课程域标准）** → **Completion**
+
+本领域不设验收标准实体——Criterion 由课程云一等实体承载，学习云仅保存跨域引用并负责记录与聚合。
 
 ## 实体
 
@@ -15,27 +17,15 @@ Learner {
 }
 ```
 
-### Criterion（验收标准）
-
-学习的原子单元，由课程档案定义。
-
-```
-Criterion {
-  id: uuid              # 标准标识
-  title: string         # 标准名称（人类可读，用于展示与检索）
-  description: string   # 具体规则描述
-}
-```
-
 ### Completion（完成记录）
 
-User 与 Criterion 的交叉记录，记录通过状态。
+Learner 与课程域验收标准的交叉记录，记录通过状态。
 
 ```
 Completion {
   id: uuid              # 主键
   learner_id: uuid      # → Learner.id
-  criterion_id: uuid    # → Criterion.id
+  criterion_id: uuid    # → 课程域 Criterion.id（同源直连）
   status: enum          # completed | not_completed
   created_at: datetime  # 创建时间
   updated_at: datetime  # 更新时间
@@ -45,5 +35,5 @@ Completion {
 ## 关系
 
 ```
-Learner ──1:N──▶ Completion ◀──N:1── Criterion
+Learner ──1:N──▶ Completion ◀──N:1── Criterion（课程域）
 ```
