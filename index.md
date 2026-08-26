@@ -22,7 +22,7 @@ Learner {
 ```
 Criterion {
   id: uuid              # 标准标识
-  title: string         # 语义标识，如 "vibe-coding/lesson1/zed-connection"
+  title: string         # 标准名称（人类可读，用于展示与检索）
   description: string   # 具体规则描述
 }
 ```
