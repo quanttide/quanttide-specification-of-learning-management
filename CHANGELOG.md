@@ -5,6 +5,7 @@
 ### Added
 
 - 领域模型拆分为两层文档：`learner/`（标准实体：Learner × Completion，JSON 契约）、`schedule/`（核心领域模型：Schedule + Task，设计完成未落码）
+- `learner/` 按实体分解为 `learner.md`（Learner）与 `completion.md`（Completion）
 
 ## [0.0.2]
 
